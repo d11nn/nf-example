@@ -18,6 +18,7 @@ type NFContext struct {
 	SBIPort     int
 
 	SpyFamilyData map[string]string
+	MarvelData map[string]string
 }
 
 var nfContext = NFContext{}
@@ -56,6 +57,12 @@ func InitNfContext() {
 		"Emile":  "Elman",
 		"Henry":  "Henderson",
 		"Martha": "Marriott",
+	}
+	nfContext.MarvelData = map[string]string{
+		"IronMan":       "Tony Stark",
+		"CaptainAmerica": "Steve Rogers",
+		"Thor": "Thor Odinson",
+		"SpiderMan":      "Peter Parker",
 	}
 }
 
