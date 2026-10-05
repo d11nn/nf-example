@@ -18,6 +18,8 @@ type NFContext struct {
 	SBIPort     int
 
 	SpyFamilyData map[string]string
+
+	MessageData map[string] string
 }
 
 var nfContext = NFContext{}
@@ -27,7 +29,7 @@ func InitNfContext() {
 
 	nfContext.NfId = uuid.New().String()
 	nfContext.Name = "ANYA"
-
+	nfContext.MessageData = make(map[string]string)
 	nfContext.UriScheme = cfg.Configuration.Sbi.Scheme
 	nfContext.SBIPort = cfg.Configuration.Sbi.Port
 	nfContext.BindingIPv4 = os.Getenv(cfg.Configuration.Sbi.BindingIPv4)
