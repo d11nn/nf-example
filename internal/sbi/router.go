@@ -47,6 +47,9 @@ func newRouter(s *Server) *gin.Engine {
 
 	chiikawaGroup := router.Group("/chiikawa")
 	applyRoutes(chiikawaGroup, s.getChiikawaRoute())
+  
+	marvelGroup := router.Group("/marvel")
+	applyRoutes(marvelGroup, s.getMarvelRoute())
 
 	return router
 }
