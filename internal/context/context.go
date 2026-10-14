@@ -2,6 +2,7 @@ package context
 
 import (
 	"os"
+	"sync"
 
 	"github.com/Alonza0314/nf-example/internal/logger"
 	"github.com/Alonza0314/nf-example/pkg/factory"
@@ -18,6 +19,16 @@ type NFContext struct {
 	SBIPort     int
 
 	SpyFamilyData map[string]string
+
+	// UeMu protects UeData, which may be read and written by concurrent requests.
+	UeMu   sync.RWMutex
+	UeData map[string]UeInfo
+}
+
+type UeInfo struct {
+	Supi  string `json:"supi"`
+	GnbId string `json:"gnbId"`
+	Dnn   string `json:"dnn"`
 }
 
 var nfContext = NFContext{}
@@ -57,6 +68,7 @@ func InitNfContext() {
 		"Henry":  "Henderson",
 		"Martha": "Marriott",
 	}
+	nfContext.UeData = make(map[string]UeInfo)
 }
 
 func GetSelf() *NFContext {
